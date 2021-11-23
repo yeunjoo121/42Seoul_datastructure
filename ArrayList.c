@@ -84,9 +84,9 @@ void deleteArrayList(ArrayList* pList)
   if (pList != NULL)
   {
     free(pList->pElement);
-	pList->pElement = NULL;
+	  pList->pElement = NULL;
     free(pList);
-	pList = NULL;
+	  pList = NULL;
   }
 }
 
@@ -105,7 +105,7 @@ ArrayListNode* getALElement(ArrayList* pList, int position)
   {
     return (NULL);
   }
-  if (position >= 0 && position <= pList->currentElementCount)
+  if (position >= 0 && position < pList->currentElementCount)
   {
     return (&(pList->pElement[position]));
   }
@@ -125,7 +125,7 @@ int addALElement(ArrayList* pList, int position, ArrayListNode element)
   {
     for(int i = pList->currentElementCount; i > position; i--)
     {
-      pList->pElement[i] = pList->pElement[i - 1];
+      pList->pElement[i] = pList->pElement[i - 1];//뒤로 미루기
     }
     pList->pElement[position] = element;
     pList->currentElementCount++;
@@ -141,11 +141,12 @@ int removeALElement(ArrayList* pList, int position)
   }
   else
   {
-    for(int i = position; i < pList->currentElementCount - 1; i++)
+    for(int i = position; i < pList->currentElementCount - 1; i++)//앞으로 당기기
     {
       pList->pElement[i] = pList->pElement[i + 1];
     }
     pList->currentElementCount--;
+    pList->pElement[pList->currentElementCount - 1] = 0;
     return (TRUE);
   }
 }
@@ -166,7 +167,6 @@ void displayArrayList(ArrayList* pList)
   {
     return ;
   }
-  printf("최대element개수 : %d, 현재element개수 : %d\n", pList->maxElementCount, pList->currentElementCount);
   for (int i = 0; i < pList->currentElementCount; i++)
   {
     printf("arr[%d] : %d\n", i, pList->pElement[i].data);

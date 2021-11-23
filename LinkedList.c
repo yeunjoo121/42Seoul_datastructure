@@ -26,19 +26,7 @@ void deleteLinkedList(LinkedList* pList);
 #define TRUE		1
 #define FALSE		0
 #endif
-void	displayLinkedList(LinkedList* pList)
-{
-    ListNode* pNode = NULL;
-    if (!pList)
-        return;
-    pNode = &(pList->headerNode);
-    printf("원소개수 : %d\n", pList->currentElementCount);
-    for (int i = 0; i < pList->currentElementCount; i++)
-    {
-        printf("%d번째: %d\n", i, pNode->data);
-        pNode = pNode->pLink;
-    }
-}
+
 LinkedList* createLinkedList()
 {
     LinkedList* pList = NULL;
@@ -51,6 +39,7 @@ LinkedList* createLinkedList()
     memset(pList, 0, sizeof(LinkedList));
     return (pList);
 }
+
 int addLLElement(LinkedList* pList, int position, ListNode element)
 {
     ListNode* pNode = NULL;
@@ -65,7 +54,7 @@ int addLLElement(LinkedList* pList, int position, ListNode element)
                 pNode = &(pList->headerNode);
                 *nextNode = element;
                 nextNode->pLink = NULL;
-                for (int i = 0; i + 1 < position; i++)
+                for (int i = 0; i < position; i++)
                 {
                     pNode = pNode->pLink;
                 }
@@ -82,16 +71,18 @@ int addLLElement(LinkedList* pList, int position, ListNode element)
     }
     return (FALSE);
 }
+
 int removeLLElement(LinkedList* pList, int position)
 {
     ListNode* pNode = NULL;
     ListNode* removeNode = NULL;
+
     if (pList != NULL)
     {
         if (position >= 0 && position < pList->currentElementCount)
         {
             pNode = &(pList->headerNode);
-            for (int i = 0; i + 1< position; i++)
+            for (int i = 0; i < position; i++)
             {
                 pNode = pNode->pLink;
             }
@@ -104,15 +95,17 @@ int removeLLElement(LinkedList* pList, int position)
     }
     return (FALSE);
 }
+
 ListNode* getLLElement(LinkedList* pList, int position)
 {
     ListNode* pNode = NULL;
+
     if (pList != NULL)
     {
         pNode = &(pList->headerNode);
         if (position >= 0 && position < pList->currentElementCount)
         {
-            for (int i = 0; i < position; i++)
+            for (int i = 0; i <= position; i++)
             {
                 pNode = pNode->pLink;
             }
@@ -121,6 +114,7 @@ ListNode* getLLElement(LinkedList* pList, int position)
     }
     return (NULL);
 }
+
 int getLinkedListLength(LinkedList* pList)
 {
     if (pList != NULL)
@@ -129,29 +123,26 @@ int getLinkedListLength(LinkedList* pList)
     }
     return (-1);
 }
+
 void clearLinkedList(LinkedList* pList)
 {
-    
     if (pList != NULL)
     {
-        int index = pList->currentElementCount;
-        ListNode *ls = pList->headerNode.pLink;
-        while (index--)
-        {
-            ls->data = 0;
-            ls = ls->pLink;
-        }
+        while (removeLLElement(pList, 0));
     }
 }
+
 void deleteLinkedList(LinkedList* pList)
 {
     if (pList != NULL)
     {
         clearLinkedList(pList);
+        memset(pList, 0, sizeof(LinkedList));
         free(pList);
         pList = NULL;
     }
 }
+
 int main(void)
 {
     LinkedList* p;
