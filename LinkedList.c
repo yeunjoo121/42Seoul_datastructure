@@ -126,7 +126,7 @@ int getLinkedListLength(LinkedList* pList)
 
 void clearLinkedList(LinkedList* pList)
 {
-    if (pList != NULL)
+    if (pList->headerNode.pLink)
     {
         while (removeLLElement(pList, 0));
     }
