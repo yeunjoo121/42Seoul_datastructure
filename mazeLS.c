@@ -208,9 +208,9 @@ int main(void)
     MapPosition startPos = { 0, };
     MapPosition endPos = { 7, 7, 0, };
     printMaze(mazeArray);
-    if (mazeArray[startPos.dy][startPos.dx] != 0)
+    if (mazeArray[startPos.dy][startPos.dx] != 0 && mazeArray[endPos.dy][endPos.dx] != 0)
     {
-        printf("start position error");
+        printf("start or end position error");
         return (0);
     }
     mazeArray[startPos.dy][startPos.dx] = 2;
