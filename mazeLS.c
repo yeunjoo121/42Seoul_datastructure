@@ -149,12 +149,14 @@ void    showPath(LinkedStack* pStack, int mazeArray[HEIGHT][WIDTH])
 {
     MapPosition* p;
     printf("This is a path of the Maze\n");
+    printf("==================================\n");
     p = pStack->pTopElement;
     for (int i = 0; i < pStack->currentElementCount; i++)
     {
         printf("(%d, %d) %c\n", p->dx, p->dy, p->direction);
         p = p->pLink;
     }
+    printf("==================================\n");
 }
 void    findPath(int mazeArray[HEIGHT][WIDTH], MapPosition startPos, MapPosition endPos, LinkedStack* pStack)
 {
@@ -193,6 +195,7 @@ void    findPath(int mazeArray[HEIGHT][WIDTH], MapPosition startPos, MapPosition
 void    printMaze(int mazeArray[HEIGHT][WIDTH])
 {
     printf("This is a Map of the Maze\n");
+    printf("==================================\n");
     for (int i = 0; i < HEIGHT; i++)
     {
         for (int j = 0; j < WIDTH; j++)
@@ -201,6 +204,7 @@ void    printMaze(int mazeArray[HEIGHT][WIDTH])
         }
         printf("\n");
     }
+    printf("==================================\n");
 }
 int main(void)
 {
