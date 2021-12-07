@@ -221,6 +221,7 @@ void deleteLinkedDeque(LinkedDeque* pDeque)
     pNode->pLLink = NULL;
     free(pNode);
   }
+  free(pDeque);
 }
 
 int isLinkedDequeFull(LinkedDeque* pDeque)
