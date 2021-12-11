@@ -289,14 +289,29 @@ void test1()
     insertRightChildNodeBT(p->pRootNode->pRightChild->pLeftChild, *n10);
     insertLeftChildNodeBT(p->pRootNode->pRightChild->pRightChild, *n11);
     insertRightChildNodeBT(p->pRootNode->pRightChild->pRightChild, *n12);
+    printf("%c\n", getRightChildNodeBT(p->pRootNode)->data);
+    printf("%c\n", getLeftChildNodeBT(p->pRootNode)->data);
 
     preorderTraversalBinTree(p);
     inorderTraversalBinTree(p);
     postorderTraversalBinTree(p);
     //printf("%c\n", p->pRootNode->pRightChild->data);
-    //deleteBinTreeNode(p->pRootNode->pRightChild);
     deleteBinTreeNode(p->pRootNode->pRightChild);
     preorderTraversalBinTree(p);
+    free(root);
+    free(n1);
+    free(n2);
+    free(n3);
+    free(n4);
+    free(n5);
+    free(n6);
+    free(n7);
+    free(n8);
+    free(n9);
+    free(n10);
+    free(n11);
+    free(n12);
+    deleteBinTree(p);
 }
 int     main()
 {

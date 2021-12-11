@@ -166,9 +166,13 @@ BinTreeNode* getRightChildNodeBT(BinTreeNode* pNode)
 }
 void deleteBinTree(BinTree* pBinTree)
 {
-    if (pBinTree != NULL && pBinTree->pRootNode != NULL)
+    if (pBinTree != NULL)
     {
-        deleteBinTreeNode(pBinTree->pRootNode);
+        if (pBinTree->pRootNode != NULL)
+        {
+            deleteBinTreeNode(pBinTree->pRootNode);
+        }
+        memset(pBinTree, 0, sizeof(BinTree));
         free(pBinTree);
         pBinTree = 0;
     }
@@ -176,13 +180,14 @@ void deleteBinTree(BinTree* pBinTree)
 
 void deleteBinTreeNode(BinTreeNode* pNode)
 {
-    printf("%c", pNode->data);
     if (pNode != NULL)
     {
+        printf("%c\n", pNode->data);
         if (pNode->pLeftChild != NULL)
             deleteBinTreeNode(pNode->pLeftChild);
-        if (pNode->pLeftChild != NULL)
+        if (pNode->pRightChild != NULL)
             deleteBinTreeNode(pNode->pRightChild);
+        memset(pNode, 0, sizeof(BinTreeNode));
         free(pNode);
         pNode = 0;
     }
